@@ -61,12 +61,25 @@ class App extends React.Component {
     this.state = {
       sidebarOpen: false,
       currentTab: 1,
-      feed: []
+      feed: [],
+      collection: [],
+      selectedTradeItem: null
     }
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this)
     this.onSetTab = this.onSetTab.bind(this)
     this.onSetFeed = this.onSetFeed.bind(this)
+    this.onSetCollection = this.onSetCollection.bind(this)
+    this.selectItemToTrade = this.selectItemToTrade.bind(this)
+    this.refreshFeed()
+    this.refreshCollection()
+  }
 
+  selectItemToTrade (item) {
+    this.setState({ selectedTradeItem: item })
+    this.onSetSidebarOpen(true)
+  }
+
+  refreshFeed () {
     getFeed().then(feed => {
       const items = []
       feed.data.allAssets.nodes.forEach(asset => {
@@ -75,7 +88,7 @@ class App extends React.Component {
             <CommentBox
               title={asset.displayName}
               subtitle={asset.subtitle}
-              imgSrc={asset.imageSource}
+              imgSrc={asset.imageUrl}
               body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
               city='New York'
               hour='3H'
@@ -84,8 +97,31 @@ class App extends React.Component {
         )
       })
 
-      console.dir(items)
       this.onSetFeed(items)
+    })
+  }
+
+  refreshCollection () {
+    getCollection().then(collection => {
+      const items = []
+      collection.data.allAssets.nodes.forEach(asset => {
+        items.push(
+          <Grid item xs={6}>
+            <Paper onClick={this.selectItemToTrade(asset)}>
+              <CommentBox
+                title={asset.displayName}
+                subtitle={asset.subtitle}
+                imgSrc={asset.imageUrl}
+                body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
+                city='New York'
+                hour='3H'
+              />
+            </Paper>
+          </Grid>
+        )
+      })
+
+      this.onSetCollection(items)
     })
   }
 
@@ -99,9 +135,10 @@ class App extends React.Component {
 
   onSetFeed (feed) {
     this.setState({ feed })
-    this.forceUpdate()
-    this.setState({ state: this.state })
-    console.log('SET FEED', feed)
+  }
+
+  onSetCollection (collection) {
+    this.setState({ collection })
   }
 
   render () {
@@ -162,81 +199,18 @@ const renderSpinner = function () {
 }
 
 const renderDropsFeed = function () {
-  console.log('render items', this.items)
+  console.log('render items', this.state.feed)
   return (
     <Grid container>
       <Grid item xs={12}>
-        {this.feed}
+        {this.state.feed}
       </Grid>
     </Grid>
   )
 }
 
 const renderCollection = function () {
-  return (
-    <Grid container>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-      <Grid item xs={6}>
-        <Paper>
-          <CommentBox
-            title='12 LETTERNAME'
-            body='is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in'
-            city='New York'
-            hour='3H'
-          />
-        </Paper>
-      </Grid>
-    </Grid>
-  )
+  return <Grid container>{this.state.collection}</Grid>
 }
 
 const renderDetail = function () {
