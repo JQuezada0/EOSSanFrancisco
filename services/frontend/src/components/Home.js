@@ -100,6 +100,7 @@ class App extends React.Component {
   onSetFeed (feed) {
     this.setState({ feed })
     this.forceUpdate()
+    this.setState({ state: this.state })
     console.log('SET FEED', feed)
   }
 
@@ -165,7 +166,7 @@ const renderDropsFeed = function () {
   return (
     <Grid container>
       <Grid item xs={12}>
-        {this.items}
+        {this.feed}
       </Grid>
     </Grid>
   )
