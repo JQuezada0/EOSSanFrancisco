@@ -112,8 +112,9 @@ function build_and_deploy_contracts () {
   $cleos set contract eoslocal /opt/application/contracts/eoslocal -p eoslocal@active
 
   echo "Verifying contract actions and user wallets work"
-  $cleos push action eoslocal greet '["1","eoslocalusra","Hello form USER A"]' -p eoslocalusra@active
-  $cleos push action eoslocal greet '["2","eoslocalusrb","Hola hola hola from USER B"]' -p eoslocalusrb@active
+  # $cleos push action eoslocal hello '[]' -p eoslocalusra@active
+  $cleos push action eoslocal init '[]' -p eoslocalusra@active
+  # $cleos push action eoslocal acceptoffer  '["1", "1", "eoslocalusra"]' -p eoslocalusra@active
 }
 
 # setup chain, testing users and contracts

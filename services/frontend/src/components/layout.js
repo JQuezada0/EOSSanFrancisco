@@ -22,8 +22,7 @@ const styles = theme => ({
   content: {
     overflow: 'scroll',
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    marginTop: 75
+    backgroundColor: theme.palette.background.default
   }
 })
 
@@ -33,8 +32,7 @@ class Layout extends Component {
     anchorEl: null
   }
 
-  handleDrawerToggle = () =>
-    this.setState({ mobileNavOpen: !this.state.mobileNavOpen })
+  handleDrawerToggle = () => this.setState({ mobileNavOpen: !this.state.mobileNavOpen })
 
   handleMenu = e => this.setState({ anchorEl: e.currentTarget })
 
@@ -52,10 +50,7 @@ class Layout extends Component {
           open={open}
           onClose={this.handleClose}
         />
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          {children}
-        </main>
+        <main className={classes.content}>{children}</main>
       </div>
     )
   }

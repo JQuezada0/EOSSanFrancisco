@@ -1,11 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  Grid,
-  Paper,
-  Typography
-} from '@material-ui/core'
+import { Grid, Paper, Typography, Button } from '@material-ui/core'
 
 const styles = theme => ({
   commentBox: {
@@ -14,28 +10,15 @@ const styles = theme => ({
   }
 })
 
-const CommentBox = ({
-  classes,
-  title,
-  body,
-  city,
-  hour
-}) => (
+const assetStyle = {
+  width: '100%'
+}
+
+const CommentBox = ({ classes, body, city, hour, title, subtitle, imgSrc }) => (
   <Paper elevation={1} className={classes.commentBox}>
-    <Typography variant='subtitle1'>
-      {title}
-    </Typography>
-    <Typography variant='caption'>
-      {body}
-    </Typography>
-    <Grid container style={{ marginTop: 10 }}>
-      <Grid item xs={6}>
-        <Typography variant='caption'>{city}</Typography>
-      </Grid>
-      <Grid item xs={6} container justify='flex-end' alignItems='flex-end'>
-        <Typography variant='caption'>{hour}</Typography>
-      </Grid>
-    </Grid>
+    <Typography variant='title'>{title}</Typography>
+    <Typography variant='subheading'>{subtitle}</Typography>
+    <img src={imgSrc} style={assetStyle} />
   </Paper>
 )
 

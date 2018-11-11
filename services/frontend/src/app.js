@@ -4,6 +4,7 @@ import { Router } from '@reach/router'
 import Layout from 'components/layout'
 import NotFound from 'routes/not-found'
 import routes from 'routes'
+import Sidebar from 'react-sidebar'
 
 const App = () => (
   <Layout>

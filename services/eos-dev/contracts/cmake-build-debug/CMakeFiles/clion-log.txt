@@ -1,0 +1,13 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/johnilquezada/Projects/EOSSanfranciscoHackathon/eos-local/services/eos-dev/contracts
+CMake Error at CMakeLists.txt:23 (include):
+  include could not find load file:
+
+    EosioWasmToolchain
+
+
+CMake Error at CMakeLists.txt:29 (message):
+  Incorrect EOSIO.CDT version, please use version 1.2.x
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/johnilquezada/Projects/EOSSanfranciscoHackathon/eos-local/services/eos-dev/contracts/cmake-build-debug/CMakeFiles/CMakeOutput.log".

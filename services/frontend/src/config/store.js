@@ -15,6 +15,8 @@ const store = init({
   plugins: [persistPlugin]
 })
 
+export const state = {}
+
 locationChangeListener(store)
 
 export default store

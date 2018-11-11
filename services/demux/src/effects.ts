@@ -1,11 +1,11 @@
-const logGreeting = (_: any, payload: any) => {
-  console.info("Greet invoked ===> Payload:\n", payload)
+const logOfferAccept = (_: any, payload: any) => {
+  console.info("Offer Accepted ===> Payload:\n", payload)
 }
 
 const effects = [
   {
-    actionType: "eoslocal::greet",
-    effect: logGreeting,
+    actionType: "eoslocal::accept_offer",
+    effect: logOfferAccept,
   },
 ]
 

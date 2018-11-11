@@ -28,39 +28,19 @@ const dbConfig = {
 console.info("DB Config >>>\n", dbConfig)
 
 const init = async () => {
-
   const db = await massive(dbConfig)
 
-  const actionHandler = new MassiveActionHandler(
-    updaters,
-    effects,
-    db,
-    dbConfig.schema,
-  )
+  const actionHandler = new MassiveActionHandler(updaters, effects, db, dbConfig.schema)
 
-  const inlineListeners = [
-    "eoslocal::greet",
-  ]
+  const inlineListeners = ["eoslocal::accept_offer"]
 
-  const actionReader = new MongoActionReader(
-    MONGO_URI,
-    INITIAL_BLOCK,
-    false,
-    600,
-    MONGO_DB,
-    inlineListeners,
-  )
+  const actionReader = new MongoActionReader(MONGO_URI, INITIAL_BLOCK, false, 600, MONGO_DB, inlineListeners)
 
   await actionReader.initialize()
 
-  const actionWatcher = new BaseActionWatcher(
-    actionReader,
-    actionHandler,
-    500,
-  )
+  const actionWatcher = new BaseActionWatcher(actionReader, actionHandler, 500)
 
   actionWatcher.watch()
-
 }
 
 const exit = (e: any) => {

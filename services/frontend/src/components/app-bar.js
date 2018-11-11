@@ -1,21 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import {
-  AppBar,
-  Toolbar,
-  Grid,
-  Button,
-  InputAdornment,
-  IconButton,
-  TextField,
-  Typography
-} from '@material-ui/core'
-import {
-  ChatBubbleOutline,
-  Settings,
-  Fingerprint
-} from '@material-ui/icons'
+import { AppBar, Toolbar, Grid, Button, InputAdornment, IconButton, TextField, Typography } from '@material-ui/core'
+import { ChatBubbleOutline, Settings, Fingerprint } from '@material-ui/icons'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import { Link } from '@reach/router'
 import { translate } from 'react-i18next'
@@ -96,70 +83,59 @@ const styles = theme => ({
   }
 })
 
-const MainTopBar = ({
-  classes,
-  handleDrawerToggle,
-  handleMenu,
-  anchorEl,
-  t
-}) => (
-  <AppBar position='absolute'>
-    <Toolbar>
-      <Link to='/' className={classes.link}>
-        <Typography variant='title' color='inherit' className={classes.title}>
-            EOS Grettings
-        </Typography>
-      </Link>
-      <div className={classes.grow} />
+const MainTopBar = ({ classes, handleDrawerToggle, handleMenu, anchorEl, t }) => (
+  <div />
+  // <AppBar position='absolute'>
+  //   {/* <Toolbar>
+  //     <Link to='/' className={classes.link}>
+  //       <Typography variant='title' color='inherit' className={classes.title}>
+  //           EOS Grettings
+  //       </Typography>
+  //     </Link>
+  //     <div className={classes.grow} />
 
-      <div className={classes.grow} />
+  //     <div className={classes.grow} />
 
-      <Link to='/account' className={classes.link}>
-        <IconButton
-          color='inherit'>
-          <Settings />
-        </IconButton>
-      </Link>
+  //     <Link to='/account' className={classes.link}>
+  //       <IconButton
+  //         color='inherit'>
+  //         <Settings />
+  //       </IconButton>
+  //     </Link>
 
-    </Toolbar>
-    <Grid container alignItems='center'>
-      <Grid item xs={10}>
-        <TextField
-          id='filled-full-width'
-          label={t('chatLabel')}
-          style={{ margin: 8 }}
-          fullWidth
-          variant='filled'
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position='start' style={{ marginTop: 20, color: '#fff' }}>
-                <ChatBubbleOutline />
-              </InputAdornment>
-            ),
-            classes: {
-              root: classes.textFieldRoot,
-              input: classes.textFieldInput
-            }
-          }}
-          InputLabelProps={{
-            className: classes.textFieldFormLabel
-          }}
-        />
-      </Grid>
-      <Grid item xs={2} style={{ justifyContent: 'center', display: 'flex' }}>
-        <Button
-          className='textPrimary'
-          variant='contained'
-          size='small'
-          color='secondary'
-          style={{ color: '#fff' }}
-        >
-          <Fingerprint />
-            Publish
-        </Button>
-      </Grid>
-    </Grid>
-  </AppBar>
+  //   </Toolbar> */}
+  //   <Grid container alignItems='center'>
+  //     <Grid item xs={10}>
+  //       <TextField
+  //         id='filled-full-width'
+  //         label={t('chatLabel')}
+  //         style={{ margin: 8 }}
+  //         fullWidth
+  //         variant='filled'
+  //         InputProps={{
+  //           startAdornment: (
+  //             <InputAdornment position='start' style={{ marginTop: 20, color: '#fff' }}>
+  //               <ChatBubbleOutline />
+  //             </InputAdornment>
+  //           ),
+  //           classes: {
+  //             root: classes.textFieldRoot,
+  //             input: classes.textFieldInput
+  //           }
+  //         }}
+  //         InputLabelProps={{
+  //           className: classes.textFieldFormLabel
+  //         }}
+  //       />
+  //     </Grid>
+  //     <Grid item xs={2} style={{ justifyContent: 'center', display: 'flex' }}>
+  //       <Button className='textPrimary' variant='contained' size='small' color='secondary' style={{ color: '#fff' }}>
+  //         <Fingerprint />
+  //         Publish
+  //       </Button>
+  //     </Grid>
+  //   </Grid>
+  // </AppBar>
 )
 
 MainTopBar.propTypes = {
